@@ -7,7 +7,7 @@ nltk.download('punkt')
 nltk.download('stopwords')
 
 def extract_text_features(texts, max_features=5000, vectorizer=None):
-    stop_words = set(stopwords.words('english'))
+    stop_words = list(stopwords.words('english'))
     if vectorizer is None:
         vectorizer = TfidfVectorizer(
             ngram_range=(1,2),

@@ -1,0 +1,11 @@
+jupyterlab
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+joblib
+opencv-python-headless
+nltk
+scikit-image
+pillow
