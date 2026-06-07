@@ -4,6 +4,9 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
 
+ENV NLTK_DATA=/usr/local/share/nltk_data
+RUN mkdir -p "$NLTK_DATA"
+
 COPY api/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 

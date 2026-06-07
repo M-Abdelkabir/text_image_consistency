@@ -3,11 +3,18 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 
-nltk.download('punkt')
-nltk.download('stopwords')
+NLTK_DATA_DIR = '/usr/local/share/nltk_data'
+if NLTK_DATA_DIR not in nltk.data.path:
+    nltk.data.path.append(NLTK_DATA_DIR)
+
+for resource in ['punkt', 'stopwords']:
+    nltk.download(resource, download_dir=NLTK_DATA_DIR, quiet=True, halt_on_error=False)
 
 def extract_text_features(texts, max_features=5000, vectorizer=None):
-    stop_words = list(stopwords.words('english'))
+    try:
+        stop_words = list(stopwords.words('english'))
+    except LookupError:
+        stop_words = None
     if vectorizer is None:
         vectorizer = TfidfVectorizer(
             ngram_range=(1,2),
